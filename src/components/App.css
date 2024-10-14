@@ -1,0 +1,41 @@
+.app-container {
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard-container {
+    padding: 20px;
+  }
+  
+  .charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .sparklines {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .summary {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .summary-item {
+    text-align: center;
+  }
+  
+  .recent-bookings {
+    margin-top: 20px;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }

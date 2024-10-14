@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import './TimeSeriesChart.css'; // Import the CSS file for styling
+import './TimeSeriesChart.css';
 
 const TimeSeriesChart = ({ data }) => {
   const series = [{
@@ -15,23 +15,27 @@ const TimeSeriesChart = ({ data }) => {
     chart: {
       type: 'line',
       zoom: { enabled: true },
-      background: '#fff',
+      toolbar: { show: false },
+      animations: {
+        enabled: true,
+        easing: 'easeinout',
+        speed: 400,
+      },
     },
     title: {
-      text: 'Time Series: Number of Visitors',
+      text: 'Visitors Over Time',
       align: 'center',
       style: {
-        fontSize: '20px',
-        fontWeight: 'bold',
-        color: '#333',
+        fontSize: '24px', // Increased font size for the title
+        color: '#2c3e50', // Dark color for the title
       },
     },
     xaxis: {
       type: 'datetime',
       labels: {
         style: {
-          colors: '#999',
-          fontSize: '12px',
+          color: '#2c3e50', // Dark color for x-axis labels
+          fontSize: '14px', // Increased font size for x-axis labels
         },
       },
     },
@@ -39,30 +43,31 @@ const TimeSeriesChart = ({ data }) => {
       title: {
         text: 'Number of Visitors',
         style: {
-          fontSize: '14px',
-          color: '#333',
+          color: '#2c3e50', // Dark color for y-axis title
+          fontSize: '16px', // Increased font size for y-axis title
         },
       },
-    },
-    stroke: {
-      curve: 'smooth',
-      width: 2,
-      colors: ['#00BFFF'], // Change the line color
+      labels: {
+        style: {
+          color: '#2c3e50', // Dark color for y-axis labels
+          fontSize: '14px', // Increased font size for y-axis labels
+        },
+      },
     },
     tooltip: {
       shared: true,
       intersect: false,
-    },
-    grid: {
-      row: {
-        colors: ['#f3f3f3', 'transparent'],
-        opacity: 0.5,
+      style: {
+        fontSize: '16px', // Increased font size for tooltip
+        background: '#333',
+        color: '#fff',
+        borderRadius: '5px',
       },
     },
   };
 
   return (
-    <div className="chart-container">
+    <div className="time-series-chart-container">
       <ReactApexChart options={options} series={series} type="line" height={350} />
     </div>
   );

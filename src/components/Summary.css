@@ -1,0 +1,40 @@
+.summary {
+    display: flex;
+    justify-content: space-around; /* Space items evenly */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px; /* Limit width for better layout */
+  }
+  
+  .summary-item {
+    display: flex;
+    align-items: center; /* Align items vertically center */
+    flex: 1; /* Make items take equal space */
+    padding: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .summary-item:hover {
+    background-color: #e0f7fa; /* Change background on hover */
+  }
+  
+  .summary-icon {
+    font-size: 2rem; /* Increase icon size */
+    margin-right: 15px; /* Add space between icon and text */
+    color: #007bff; /* Icon color */
+  }
+  
+  h3 {
+    margin: 0;
+    color: #333; /* Header color */
+  }
+  
+  p {
+    margin: 5px 0 0; /* Add spacing to paragraph */
+    font-size: 1.5rem; /* Increase font size for better readability */
+    color: #555; /* Text color */
+  }
+  

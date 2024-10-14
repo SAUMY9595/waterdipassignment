@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import './CountryVisitorsChart.css'; // Import the CSS file
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFlag } from '@fortawesome/free-solid-svg-icons'; // You can add more flag icons as needed
+import './CountryVisitorsChart.css';
 
 const CountryVisitorsChart = ({ data }) => {
+  // Aggregate visitor counts by country
   const countryCounts = data.reduce((acc, booking) => {
     acc[booking.country] = (acc[booking.country] || 0) + booking.adults + booking.children + booking.babies;
     return acc;
@@ -13,67 +16,51 @@ const CountryVisitorsChart = ({ data }) => {
     data: Object.values(countryCounts),
   }];
 
+  const countries = Object.keys(countryCounts);
+  
+  // Dynamic colors for each country
+  const colors = ['#ff5733', '#33ff57', '#3357ff', '#ff33a1', '#fffb33', '#33fff5'];
+
+  // Chart options
   const options = {
     chart: {
       type: 'bar',
+      height: 350,
       toolbar: {
-        show: true,
-      },
-      animations: {
-        enabled: true,
-        easing: 'easeinout',
-        speed: 800,
+        show: true, // Show toolbar
       },
     },
     plotOptions: {
       bar: {
-        borderRadius: 4,
-        horizontal: false,
         distributed: true,
-      },
-    },
-    dataLabels: {
-      enabled: true,
-      style: {
-        colors: ['#fff'],
+        dataLabels: {
+          position: 'top', // Display data labels on top of bars
+        },
       },
     },
     xaxis: {
-      categories: Object.keys(countryCounts),
-      title: {
-        text: 'Country',
-        style: {
-          fontSize: '14px',
-          color: '#333',
-        },
-      },
-    },
-    yaxis: {
-      title: {
-        text: 'Number of Visitors',
-        style: {
-          fontSize: '14px',
-          color: '#333',
-        },
-      },
+      categories: countries.map((country, index) => `${country} ${<FontAwesomeIcon icon={faFlag} className="flag-icon" />}`),
     },
     title: {
-      text: 'Number of Visitors by Country',
+      text: 'Visitors by Country',
       align: 'center',
       style: {
-        fontSize: '24px',
-        fontWeight: 'bold',
+        fontSize: '20px',
         color: '#333',
       },
     },
     tooltip: {
-      theme: 'dark',
+      shared: true,
+      intersect: false,
+      y: {
+        formatter: (val) => `${val} Visitors`, // Tooltip formatting
+      },
     },
-    grid: {
-      borderColor: '#e7e7e7',
-      row: {
-        colors: ['#f3f3f3', 'transparent'],
-        opacity: 0.5,
+    colors: colors.slice(0, countries.length), // Dynamic colors
+    dataLabels: {
+      enabled: true,
+      style: {
+        colors: ['#fff'], // Color of data labels
       },
     },
   };
